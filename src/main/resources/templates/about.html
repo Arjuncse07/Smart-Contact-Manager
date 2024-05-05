@@ -1,0 +1,37 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+<h1>
+    This is about page
+</h1>
+
+<!-- Using Fragment in Thymleaf -->
+<!--  <div th:insert="~{base :: parent('one', 'two')}"></div>  -->
+
+<div  class="host-tag" th:replace="${isLogin} ? ~{base :: parent(~{::section})} : ~{base :: userNotLogin} ">
+   
+    
+<section>
+    <h1> User is Login </h1>
+    <h2>Dynamic Content</h2>
+    <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi, assumenda!
+    </p>
+    <button>Click on Dynamic Content </button>
+</section>
+
+</div>
+
+
+<!-- Another Fragment in a same page-->
+<!--  <div th:insert ="~{base :: arjunFragment}"> -->
+
+</div>
+
+</body>
+</html>
