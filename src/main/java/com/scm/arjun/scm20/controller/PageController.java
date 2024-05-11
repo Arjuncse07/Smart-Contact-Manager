@@ -2,7 +2,13 @@ package com.scm.arjun.scm20.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.scm.arjun.scm20.entities.User;
+import com.scm.forms.UserForm;
 
 @Controller
 public class PageController {
@@ -24,13 +30,52 @@ public class PageController {
     }
 
     @RequestMapping("/services")
-    public String services(){
-        
+    public String services(){  
         System.out.println("Under Services Page");
         return "services";
     }
 
 
+    @GetMapping("/contact")
+    public String contact(){
+        System.out.println("Contact Html Page");
+        return "contact";
+    }
+
+    @GetMapping("/login")
+    public String login()
+    {
+        System.out.println("Login Html");
+        return "login";
+    }
+
+
+    @GetMapping("/register")
+    public String register(Model model){
+
+       try{
+        UserForm userForm = new UserForm();
+        userForm.setName("arjun");
+        userForm.setEmail("aj629280@gmail.com");
+        userForm.setPhoneNumber("8954967747");
+        userForm.setAbout("Write something about yourlself");
+        model.addAttribute("userData", userForm);
+       System.out.println("Register Controller");
+       }catch(Exception e){
+        e.printStackTrace();
+       }
+        
+        return "register";
+    }
+
+    // Process of Register
+
+    @PostMapping("/do-register")
+    public String registerProcess(@ModelAttribute UserForm userForm){
+       System.out.println("userForm>>>>>>"+userForm);
+      System.out.println("Register Processing");
+        return "redirect:/register";
+    }
   
 
 
