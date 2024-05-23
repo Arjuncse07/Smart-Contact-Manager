@@ -17,13 +17,8 @@ public class SocialLink {
 
     @Id
     private Long Id;
-    
-
-    
     private String link;
-    
     private String title;
-
 
     @ManyToOne
     private Contacts contact;

@@ -1,5 +1,8 @@
 package com.scm.arjun.scm20.controller;
 
+import com.scm.arjun.scm20.entities.User;
+import com.scm.arjun.scm20.services.UserServices;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,11 +10,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.scm.arjun.scm20.entities.User;
-import com.scm.forms.UserForm;
+import com.scm.arjun.scm20.forms.UserForm;
 
 @Controller
 public class PageController {
+
+    @Autowired
+    private UserServices userServices;
 
     @RequestMapping("/home")
     public String home(Model model){
@@ -72,8 +77,18 @@ public class PageController {
 
     @PostMapping("/do-register")
     public String registerProcess(@ModelAttribute UserForm userForm){
-       System.out.println("userForm>>>>>>"+userForm);
-      System.out.println("Register Processing");
+
+       User user = User.builder()
+               .name(userForm.getName())
+               .email(userForm.getEmail())
+               .phoneNumber(userForm.getPhoneNumber())
+               .about(userForm.getAbout())
+               .build();
+
+        userServices.saveUser(user);
+
+
+
         return "redirect:/register";
     }
   
