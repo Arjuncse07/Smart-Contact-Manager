@@ -1,4 +1,4 @@
-package com.scm.forms;
+package com.scm.arjun.scm20.forms;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

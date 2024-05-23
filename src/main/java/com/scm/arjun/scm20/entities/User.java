@@ -5,19 +5,17 @@ package com.scm.arjun.scm20.entities;
 import java.util.ArrayList;
 import java.util.List;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
-import lombok.Data;
+import jakarta.persistence.*;
+import lombok.*;
 
 
 @Entity(name = "USER")
 @Table(name = "USER")
-@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 public class User {
 
 @Id
@@ -45,8 +43,8 @@ private boolean enable = false;
 private boolean emailVerified = false;
 private boolean phoneNumberVerified = false;
 
-//SignUp >> Google, Facebook, Twittwer
-
+//SignUp >> Google, Facebook, Tweet
+@Enumerated(value = EnumType.STRING)   //enables user to update the string enum in database
 private Providers provider = Providers.SELF;
 private String providerUserId;
 
